@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 
 import MenuItem from "../menu-item/menu-item.component";
 
@@ -40,8 +41,18 @@ const Directory = () => {
     },
   ]);
 
+  let directoryMenuRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(
+      directoryMenuRef,
+      { opacity: 0, y: -100 },
+      { opacity: 1, y: 0, duration: 1 }
+    );
+  }, []);
+
   return (
-    <div className="directory-menu">
+    <div className="directory-menu" ref={(e) => (directoryMenuRef = e)}>
       {sections.map(({ id, ...otherSectionProps }) => (
         <MenuItem key={id} {...otherSectionProps} />
       ))}
