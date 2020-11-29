@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap, Power3 } from "gsap";
+import { auth } from "../../firebase/firebase.utils";
 
 import { ReactComponent as Logo } from "../../assets/heroLogo.svg";
 
 import "./header.styles.scss";
 
-const Header = () => {
+const Header = ({ currentUser }) => {
   let headerRef = useRef(null);
   let logoRef = useRef(null);
   let optionsRef = useRef(null);
@@ -20,12 +21,12 @@ const Header = () => {
     )
       .fromTo(
         logoRef,
-        { x: "40vw" },
+        { x: "35vw" },
         { x: 0, duration: 0.5, transition: Power3.easeOut }
       )
       .fromTo(
         optionsRef,
-        { x: "-40vw" },
+        { x: "-35vw" },
         { x: 0, duration: 0.5, transition: Power3.easeOut },
         "-=0.5"
       );
@@ -43,6 +44,15 @@ const Header = () => {
         <Link className="option" to="/shop">
           CONTACT
         </Link>
+        {currentUser ? (
+          <div className="option" onClick={() => auth.signOut()}>
+            SIGN OUT
+          </div>
+        ) : (
+          <Link className="option" to="/signin">
+            SIGN IN
+          </Link>
+        )}
       </div>
     </div>
   );
