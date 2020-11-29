@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { gsap, Power2 } from "gsap";
+import { gsap, Power3 } from "gsap";
 
 import { ReactComponent as Logo } from "../../assets/heroLogo.svg";
 
@@ -13,9 +13,22 @@ const Header = () => {
 
   useEffect(() => {
     const tl = gsap.timeline();
-    tl.fromTo(headerRef, { opacity: 0, y: -100 }, { opacity: 1, y: 0 })
-      .fromTo(logoRef, { x: "40vw" }, { x: 0, duration: 0.5 })
-      .fromTo(optionsRef, { x: "-40vw" }, { x: 0, duration: 0.5 }, "-=0.5");
+    tl.fromTo(
+      headerRef,
+      { opacity: 0, y: -100 },
+      { opacity: 1, y: 0, transition: Power3.easeIn }
+    )
+      .fromTo(
+        logoRef,
+        { x: "40vw" },
+        { x: 0, duration: 0.5, transition: Power3.easeOut }
+      )
+      .fromTo(
+        optionsRef,
+        { x: "-40vw" },
+        { x: 0, duration: 0.5, transition: Power3.easeOut },
+        "-=0.5"
+      );
   }, []);
 
   return (
