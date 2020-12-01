@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap, Power3 } from "gsap";
+import { connect } from "react-redux";
+
 import { auth } from "../../firebase/firebase.utils";
 
 import { ReactComponent as Logo } from "../../assets/heroLogo.svg";
@@ -58,4 +60,8 @@ const Header = ({ currentUser }) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);
