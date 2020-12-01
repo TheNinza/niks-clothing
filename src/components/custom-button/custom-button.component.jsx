@@ -2,9 +2,10 @@ import React from "react";
 
 import "./custom-button.styles.scss";
 
-const CustomButton = ({ children, isGoogleSignIn, ...otherProps }) => {
+const CustomButton = ({ children, isGoogleSignIn, ...otherProps }, ref) => {
   return (
     <button
+      ref={ref}
       className={`${isGoogleSignIn ? "google-sign-in" : ""} custom-button`}
       {...otherProps}
     >
@@ -13,4 +14,4 @@ const CustomButton = ({ children, isGoogleSignIn, ...otherProps }) => {
   );
 };
 
-export default CustomButton;
+export default React.forwardRef(CustomButton);
