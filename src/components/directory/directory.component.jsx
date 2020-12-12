@@ -46,7 +46,7 @@ const Directory = () => {
   useEffect(() => {
     gsap.fromTo(
       directoryMenuRef,
-      { opacity: 0, y: -100, zIndex: -1 },
+      { opacity: 0, y: -100 },
       { opacity: 1, y: 0, duration: 1 }
     );
   }, []);

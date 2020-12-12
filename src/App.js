@@ -38,7 +38,7 @@ function App({ currentUser, setCurrentUser }) {
   }, []);
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
