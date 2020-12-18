@@ -10,8 +10,13 @@ import {
   selectCartTotal,
 } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
-
-import "./checkout.styles.scss";
+import {
+  CheckoutHeaderContainer,
+  CheckoutPageContainer,
+  HeaderBlockContainer,
+  PaymentButton,
+  TotalContainer,
+} from "./checkout.styles";
 
 const stripePromise = loadStripe(
   "pk_test_51HytdnG6rUbsulVXed5xUVd6pCBjpL2IF615zGIfT3pGgqz8aj31JdDizRJ2d75oi9BJLxcHUpHpeWuRqWuCmaCP00FYfhASVm"
@@ -63,40 +68,38 @@ const CheckoutPage = ({ cartItems, total, currentUser }) => {
 
   const history = useHistory();
   return (
-    <div className="checkout-page">
-      <div className="checkout-header">
-        <div className="header-block">
+    <CheckoutPageContainer>
+      <CheckoutHeaderContainer>
+        <HeaderBlockContainer>
           <span>Product</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Description</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Quantity</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Price</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Remove</span>
-        </div>
-      </div>
+        </HeaderBlockContainer>
+      </CheckoutHeaderContainer>
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <div className="total">
+      <TotalContainer>
         <span>TOTAL: ₹{total}</span>
-      </div>
+      </TotalContainer>
       {currentUser ? (
-        <button className="payment-button" onClick={handlePayment}>
-          Pay Now
-        </button>
+        <PaymentButton onClick={handlePayment}>Pay Now</PaymentButton>
       ) : (
         <CustomButton onClick={() => history.push("/signin")}>
           Sign In To Proceed For Payment
         </CustomButton>
       )}
-    </div>
+    </CheckoutPageContainer>
   );
 };
 

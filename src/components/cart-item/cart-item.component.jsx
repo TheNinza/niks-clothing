@@ -2,7 +2,12 @@ import React, { useEffect, useRef } from "react";
 
 import { gsap } from "gsap";
 
-import "./cart-item.styles.scss";
+import {
+  CartItemContainer,
+  ItemDetailsContainer,
+  ItemImage,
+  ItemName,
+} from "./cart-item.styles";
 
 const CartItem = ({ item: { imageUrl, price, name, quantity } }) => {
   let cartItemRef = useRef(null);
@@ -12,15 +17,15 @@ const CartItem = ({ item: { imageUrl, price, name, quantity } }) => {
   }, []);
 
   return (
-    <div className="cart-item" ref={(el) => (cartItemRef = el)}>
-      <img src={imageUrl} alt="cartItem" />
-      <div className="item-details">
-        <span className="name">{name}</span>
+    <CartItemContainer ref={(el) => (cartItemRef = el)}>
+      <ItemImage src={imageUrl} alt="cartItem" />
+      <ItemDetailsContainer>
+        <ItemName>{name}</ItemName>
         <span className="price">
           {quantity} x ₹{price}
         </span>
-      </div>
-    </div>
+      </ItemDetailsContainer>
+    </CartItemContainer>
   );
 };
 
