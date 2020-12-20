@@ -16,8 +16,6 @@ const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 const ShopPage = ({ match, updateCollections }) => {
   const [loading, setLoading] = useState(true);
 
-  let unsubscribeFromSnapshot = null;
-
   useEffect(() => {
     const collectionRef = firestore.collection("collections");
 
