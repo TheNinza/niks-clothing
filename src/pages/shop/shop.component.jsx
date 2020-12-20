@@ -21,15 +21,11 @@ const ShopPage = ({ match, updateCollections }) => {
   useEffect(() => {
     const collectionRef = firestore.collection("collections");
 
-    unsubscribeFromSnapshot = collectionRef.onSnapshot(async (snapshot) => {
+    collectionRef.get().then((snapshot) => {
       const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
       updateCollections(collectionsMap);
       setLoading(false);
     });
-    return () => {
-      console.log("shop will unmount");
-      unsubscribeFromSnapshot();
-    };
   }, [updateCollections]);
 
   return (
