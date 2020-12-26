@@ -1,10 +1,11 @@
 import { loadStripe } from "@stripe/stripe-js";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
+import Card from "../../components/glass-morphic-card/card.component";
 import { clearCart } from "../../redux/cart/cart.actions";
 import {
   selectCartItems,
@@ -25,6 +26,8 @@ const stripePromise = loadStripe(
 
 const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
   const history = useHistory();
+
+  const [showCard, setShowCard] = useState(false);
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -96,12 +99,17 @@ const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
         <span>TOTAL: ₹{total}</span>
       </TotalContainer>
       {currentUser ? (
-        <PaymentButton onClick={handlePayment}>Pay Now</PaymentButton>
+        total ? (
+          <PaymentButton onClick={() => setShowCard(true)}>
+            Pay Now
+          </PaymentButton>
+        ) : null
       ) : (
         <CustomButton onClick={() => history.push("/signin")}>
           Sign In To Proceed For Payment
         </CustomButton>
       )}
+      <Card showCard={showCard} handlePayment={handlePayment} />
     </CheckoutPageContainer>
   );
 };
