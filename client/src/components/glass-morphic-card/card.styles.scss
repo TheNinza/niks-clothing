@@ -8,8 +8,8 @@
   height: 300px;
   width: 500px;
   padding: 15px 10px 10px 10px;
-  position: absolute;
-  top: 50vh;
+  position: fixed;
+  top: 47%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(20, 20, 20, 0.3);
@@ -24,7 +24,7 @@
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
-  transition: all 1.5s ease;
+  transition: all 1s ease;
   .name {
     width: 80%;
     margin: 60px 0 0 0;

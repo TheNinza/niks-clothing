@@ -74,7 +74,13 @@ const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
   };
 
   return (
-    <CheckoutPageContainer>
+    <CheckoutPageContainer
+      onClick={() => {
+        if (showCard) {
+          setShowCard(false);
+        }
+      }}
+    >
       <CheckoutHeaderContainer>
         <HeaderBlockContainer>
           <span>Product</span>
