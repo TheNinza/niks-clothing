@@ -24,6 +24,10 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
         <Logo className="logo" />
       </LogoContainer>
       <OptionsContainer>
+        {currentUser && (
+          <OptionLink as="div">Hi {currentUser.displayName} !</OptionLink>
+        )}
+
         <OptionLink to="/shop">SHOP</OptionLink>
         <OptionLink to="/shop">CONTACT</OptionLink>
         {currentUser ? (
