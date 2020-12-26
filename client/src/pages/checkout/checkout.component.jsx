@@ -1,10 +1,11 @@
 import { loadStripe } from "@stripe/stripe-js";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
+import { clearCart } from "../../redux/cart/cart.actions";
 import {
   selectCartItems,
   selectCartTotal,
@@ -22,36 +23,36 @@ const stripePromise = loadStripe(
   "pk_test_51HytdnG6rUbsulVXed5xUVd6pCBjpL2IF615zGIfT3pGgqz8aj31JdDizRJ2d75oi9BJLxcHUpHpeWuRqWuCmaCP00FYfhASVm"
 );
 
-const CheckoutPage = ({ cartItems, total, currentUser }) => {
-  const [message, setMessage] = useState("");
+const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
+  const history = useHistory();
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
 
     if (query.get("success")) {
-      setMessage("Order successful");
       console.log("success");
-      window.alert("order successful");
+      window.alert("order placed");
+      clearCart();
+      history.push("/");
     }
     if (query.get("canceled")) {
-      setMessage("Order canceled");
       console.log("canceled");
       window.alert(
         "order cancelled, if any amount deducted from your bank, it will be refunded"
       );
+      history.push("/checkout");
     }
-  }, []);
+  }, [clearCart, history]);
 
   const handlePayment = async () => {
-    console.log("payment started");
     const stripe = await stripePromise;
-    console.log(cartItems);
 
-    const response = await fetch("http://localhost:5000/checkout", {
+    const response = await fetch("/payment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        cartItems: cartItems,
+        cartItems,
+        currentUser,
       }),
     });
 
@@ -62,11 +63,13 @@ const CheckoutPage = ({ cartItems, total, currentUser }) => {
     });
 
     if (result.error) {
+      window.alert(
+        "Temporary Error Occured, if any amount deducted from your bank, it will be refunded"
+      );
       console.log(result);
     }
   };
 
-  const history = useHistory();
   return (
     <CheckoutPageContainer>
       <CheckoutHeaderContainer>
@@ -109,4 +112,8 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-export default connect(mapStateToProps)(CheckoutPage);
+const mapDispatchToProps = (dispatch) => ({
+  clearCart: () => dispatch(clearCart()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPage);
