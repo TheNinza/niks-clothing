@@ -14,6 +14,11 @@ export const CartDropdownContainer = styled.div`
   right: 0px;
   z-index: 5;
   overflow: hidden;
+  @media screen and (max-width: 800px) {
+    padding: 10px;
+    width: 200px;
+    height: 300px;
+  }
 `;
 export const CartItemsContainer = styled.div`
   height: 240px;
@@ -29,4 +34,5 @@ export const EmptyMessageContainer = styled.span`
 
 export const CheckoutButton = styled(CustomButton)`
   margin-top: auto;
+  margin: 3px 0;
 `;

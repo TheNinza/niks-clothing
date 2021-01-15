@@ -5,7 +5,7 @@ export const CollectionItemContainer = styled.div`
   width: 22vw;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 40vh;
   align-items: center;
   position: relative;
 
@@ -20,16 +20,24 @@ export const CollectionItemContainer = styled.div`
       box-shadow: 0 5px 8px 2px rgba(0, 0, 0, 0.5);
     }
   }
+
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+  }
 `;
 export const AddToCartButton = styled(CustomButton)`
   width: 80%;
   opacity: 0.7;
   position: absolute;
-  top: 255px;
+  bottom: 40px;
   &.custom-button {
     transform-origin: top;
     transform: scaleY(0);
     transition: all 0.2s linear;
+  }
+
+  @media screen and (max-width: 800px) {
+    padding: 0 10px;
   }
 `;
 
@@ -52,11 +60,11 @@ export const CollectionFooterContainer = styled.div`
 `;
 
 export const NameContainer = styled.span`
-  width: 90%;
+  width: 80%;
   margin-bottom: 15px;
 `;
 
 export const PriceContainer = styled.span`
-  width: 10%;
+  width: 20%;
   text-align: right;
 `;

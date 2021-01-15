@@ -23,7 +23,7 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
       <TextContainer className="name"> {name} </TextContainer>
       <QuantityContainer>
         <div onClick={() => removeItem(cartItem)}>&#10094;</div>
-        <div>{quantity}</div>
+        <span>{quantity}</span>
         <div onClick={() => addItem(cartItem)}>&#10095;</div>
       </QuantityContainer>
       <TextContainer>{price}</TextContainer>
