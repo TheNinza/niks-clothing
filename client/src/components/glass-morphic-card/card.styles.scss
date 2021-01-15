@@ -25,6 +25,7 @@
   opacity: 0;
   pointer-events: none;
   transition: all 1s ease;
+
   .name {
     width: 80%;
     margin: 60px 0 0 0;
@@ -75,6 +76,47 @@
     top: -25px;
     right: 100px;
     z-index: -2;
+  }
+  @media screen and (max-width: 800px) {
+    width: 95%;
+    height: 28%;
+
+    * {
+      font-size: 15px;
+    }
+
+    .description {
+      font-size: 20px;
+      letter-spacing: 2px;
+    }
+
+    .name {
+      width: 90%;
+      margin: 20px 0 0 0;
+      font-size: 18px;
+    }
+    .card-number {
+      padding: 8px 0;
+      span {
+        letter-spacing: 8px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+
+    .details-container {
+      .details {
+        font-size: 14px;
+      }
+    }
+    .first {
+      width: 180px;
+      height: 180px;
+    }
+    .second {
+      width: 130px;
+      height: 130px;
+    }
   }
 }
 
