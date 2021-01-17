@@ -29,3 +29,16 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
       : cartItem
   );
 };
+
+export const mergeCartItems = (cartItems, cartItemsToMerge) => {
+  cartItemsToMerge.forEach((item) => {
+    const existingCartIdx = cartItems.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+    if (existingCartIdx !== -1) {
+      cartItems[existingCartIdx].quantity = item.quantity;
+    } else cartItems.push(item);
+  });
+
+  return [...cartItems];
+};
