@@ -34,9 +34,11 @@ const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
 
     if (query.get("success")) {
       console.log("success");
-      window.alert("order placed");
-      clearCart();
-      history.push("/");
+      if (currentUser) {
+        clearCart();
+        window.alert("order placed");
+        history.push("/");
+      }
     }
     if (query.get("canceled")) {
       console.log("canceled");
@@ -45,7 +47,7 @@ const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
       );
       history.push("/checkout");
     }
-  }, [clearCart, history]);
+  }, [clearCart, history, currentUser]);
 
   const handlePayment = async () => {
     const stripe = await stripePromise;
