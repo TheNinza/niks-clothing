@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const CartItemContainer = styled.div`
+export const CartItemContainer = styled(motion.div)`
   width: 100%;
   display: flex;
   height: 80px;

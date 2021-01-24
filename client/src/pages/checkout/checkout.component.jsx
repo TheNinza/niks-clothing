@@ -1,4 +1,5 @@
 import { loadStripe } from "@stripe/stripe-js";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -23,6 +24,34 @@ import {
 const stripePromise = loadStripe(
   "pk_test_51HytdnG6rUbsulVXed5xUVd6pCBjpL2IF615zGIfT3pGgqz8aj31JdDizRJ2d75oi9BJLxcHUpHpeWuRqWuCmaCP00FYfhASVm"
 );
+
+const checkoutPageVariants = {
+  hidden: {
+    x: "100vw",
+    opacity: 0,
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring",
+    },
+  },
+  exit: {
+    x: "-100vw",
+    transition: { ease: "easeInOut" },
+  },
+};
+
+const checkoutContainerVariant = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.5,
+    },
+  },
+};
 
 const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
   const history = useHistory();
@@ -77,6 +106,10 @@ const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
 
   return (
     <CheckoutPageContainer
+      variants={checkoutPageVariants}
+      initial="hidden"
+      animate="show"
+      exit="exit"
       onClick={() => {
         if (showCard) {
           setShowCard(false);
@@ -100,9 +133,20 @@ const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
           <span>Remove</span>
         </HeaderBlockContainer>
       </CheckoutHeaderContainer>
-      {cartItems.map((cartItem) => (
-        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-      ))}
+
+      <AnimatePresence exitBeforeEnter>
+        <motion.div
+          variants={checkoutContainerVariant}
+          initial="hidden"
+          animate="show"
+          style={{ width: "100%" }}
+        >
+          {cartItems.map((cartItem) => (
+            <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+          ))}
+        </motion.div>
+      </AnimatePresence>
+
       <TotalContainer>
         <span>TOTAL: ₹{total}</span>
       </TotalContainer>

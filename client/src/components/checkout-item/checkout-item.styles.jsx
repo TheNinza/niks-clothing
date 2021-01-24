@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const CheckoutItemContainer = styled.div`
+export const CheckoutItemContainer = styled(motion.div)`
   width: 100%;
   display: flex;
   min-height: 100px;

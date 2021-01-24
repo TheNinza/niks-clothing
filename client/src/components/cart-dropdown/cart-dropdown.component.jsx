@@ -14,15 +14,38 @@ import {
   EmptyMessageContainer,
 } from "./cart-dropdown.styles";
 
+const cartDropdownVariants = {
+  hidden: {
+    y: -50,
+    scaleY: 0,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    scaleY: 1,
+    opacity: 1,
+    transformOrigin: "top",
+    transition: {
+      ease: "easeInOut",
+      type: "spring",
+    },
+  },
+};
+
 const CartDropdown = ({ cartItems, dispatch }) => {
   const history = useHistory();
 
   return (
-    <CartDropdownContainer>
+    <CartDropdownContainer
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      variants={cartDropdownVariants}
+    >
       <CartItemsContainer>
         {cartItems.length ? (
           cartItems.map((cartItem) => (
-            <CartItem key={cartItem.id} item={cartItem} />
+            <CartItem key={cartItem.id} id={cartItem.id} item={cartItem} />
           ))
         ) : (
           <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>

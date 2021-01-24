@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const SpinnerOverlay = styled.div`
+export const SpinnerOverlay = styled(motion.div)`
   height: 60vh;
   width: 100%;
   display: flex;

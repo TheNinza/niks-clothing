@@ -13,10 +13,28 @@ import {
   TextContainer,
 } from "./checkout-item.styles";
 
+const checkoutItemVariants = {
+  hidden: {
+    y: "50vh",
+    opacity: 0,
+    scaleY: 0,
+  },
+  show: {
+    y: 0,
+    opacity: 1,
+    scaleY: 1,
+    transition: {
+      duration: 1,
+      ease: "easeInOut",
+      type: "spring",
+    },
+  },
+};
+
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
   return (
-    <CheckoutItemContainer>
+    <CheckoutItemContainer variants={checkoutItemVariants}>
       <ImageContainer>
         <img src={imageUrl} alt="item" />
       </ImageContainer>

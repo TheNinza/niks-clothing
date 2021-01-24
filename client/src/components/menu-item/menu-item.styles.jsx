@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const MenuItemContainer = styled.div`
+export const MenuItemContainer = styled(motion.div)`
   height: ${({ size }) => (size ? "51vh" : "31vh")};
   min-width: 30%;
   flex: 1 1 auto;

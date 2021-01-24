@@ -1,7 +1,8 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import CustomButton from "../custom-button/custom-button.component";
 
-export const CartDropdownContainer = styled.div`
+export const CartDropdownContainer = styled(motion.div)`
   position: absolute;
   width: 240px;
   height: 340px;

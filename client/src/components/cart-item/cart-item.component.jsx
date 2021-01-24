@@ -9,7 +9,13 @@ import {
 
 const CartItem = ({ item: { imageUrl, price, name, quantity } }) => {
   return (
-    <CartItemContainer>
+    <CartItemContainer
+      initial={{ x: "-100%" }}
+      animate={{
+        x: 0,
+        transition: { delay: 0.3, ease: "easeInOut", type: "spring" },
+      }}
+    >
       <ItemImage src={imageUrl} alt="cartItem" />
       <ItemDetailsContainer>
         <ItemName>{name}</ItemName>

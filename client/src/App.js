@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { GlobalStyle } from "./global.styles";
@@ -11,6 +11,7 @@ import ErrorBoundry from "./components/error-boundry/error-boundry.component";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSession } from "./redux/user/user.actions";
+import { AnimatePresence } from "framer-motion";
 
 const HomePage = lazy(() => import("./pages/homepage/homepage.component"));
 const ShopPage = lazy(() => import("./pages/shop/shop.component"));
@@ -24,16 +25,22 @@ const App = ({ currentUser, checkUserSession }) => {
     checkUserSession();
   }, [checkUserSession]);
 
+  const location = useLocation();
+
   return (
     <div style={{ position: "relative" }}>
       <GlobalStyle />
       <Header />
-      <Switch>
-        <ErrorBoundry>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path="/" component={HomePage} />
+      <ErrorBoundry>
+        <Switch location={location} key={location.pathname}>
+          <Suspense fallback={<Spinner id="spinner" />}>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
             <Route path="/shop" component={ShopPage} />
-            <Route exact path="/checkout" component={CheckoutPage} />
+            <Route exact path="/checkout">
+              <CheckoutPage />
+            </Route>
             <Route
               exact
               path="/signin"
@@ -42,8 +49,8 @@ const App = ({ currentUser, checkUserSession }) => {
               }
             />
           </Suspense>
-        </ErrorBoundry>
-      </Switch>
+        </Switch>
+      </ErrorBoundry>
     </div>
   );
 };

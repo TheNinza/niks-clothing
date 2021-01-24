@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const CheckoutPageContainer = styled.div`
+export const CheckoutPageContainer = styled(motion.div)`
   width: 55%;
   min-height: 90vh;
   display: flex;

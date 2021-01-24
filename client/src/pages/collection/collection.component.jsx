@@ -8,10 +8,33 @@ import {
   CollectionTitle,
 } from "./collection.styles";
 
+const collectionPageVariants = {
+  hidden: {
+    x: "100vw",
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring",
+    },
+  },
+  exit: {
+    x: "-100vw",
+    transition: { ease: "easeInOut" },
+  },
+};
+
 const CollectionPage = ({ collection }) => {
   const { title, items } = collection;
   return (
-    <CollectionPageContainer>
+    <CollectionPageContainer
+      variants={collectionPageVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
       <CollectionTitle>{title}</CollectionTitle>
       <CollectionItemsContainer>
         {items.map((item) => (

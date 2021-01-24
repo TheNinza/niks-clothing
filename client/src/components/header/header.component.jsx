@@ -16,6 +16,7 @@ import {
   OptionsContainer,
 } from "./header.styles";
 import { signOutStart } from "../../redux/user/user.actions";
+import { AnimatePresence } from "framer-motion";
 
 const Header = ({ currentUser, hidden, signOutStart }) => {
   return (
@@ -43,7 +44,7 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
         )}
         <CartIcon />
       </OptionsContainer>
-      {hidden ? null : <CartDropdown />}
+      <AnimatePresence>{hidden ? null : <CartDropdown />}</AnimatePresence>
     </HeaderContainer>
   );
 };

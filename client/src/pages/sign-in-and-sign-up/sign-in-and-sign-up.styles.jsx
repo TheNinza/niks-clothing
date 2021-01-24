@@ -1,6 +1,6 @@
 import styled from "styled-components";
-
-export const SignInAndSignUpContainer = styled.div`
+import { motion } from "framer-motion";
+export const SignInAndSignUpContainer = styled(motion.div)`
   width: 850px;
   display: flex;
   justify-content: space-between;
