@@ -1,5 +1,38 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
+
+const animation = keyframes`
+from{
+  box-shadow: inset 0 0 10px 0 rgba(31, 38, 135, 0.37),
+      0 0 10px 0 rgba(31, 38, 135, 0.37);
+}
+to{
+  box-shadow: inset 0 0 10px 0 rgba(31, 38, 135, 0.16),
+      0 0 10px 0 rgba(31, 38, 135, 0.16);
+}
+`;
+
+const logoAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(180deg);
+  }
+
+  50% {
+    transform: rotate(360deg);
+  }
+
+  75% {
+    transform: rotate(540deg);
+  }
+
+  100% {
+    transform: rotate(720deg);
+  }
+`;
 
 export const HeaderContainer = styled.div`
   height: 6vh;
@@ -19,6 +52,7 @@ export const LogoContainer = styled(Link)`
   height: 100%;
   width: 70px;
   position: relative;
+  animation: ${logoAnimation} 1s linear;
 
   .logo {
     width: 100%;
@@ -35,11 +69,10 @@ export const LogoContainer = styled(Link)`
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 10px 0 rgba(31, 38, 135, 0.37),
-      0 0 10px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     z-index: -1;
+    animation: ${animation} 2s ease infinite alternate;
   }
 
   @media screen and (max-width: 800px) {
