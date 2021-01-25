@@ -5,9 +5,17 @@ export const CollectionItemContainer = styled.div`
   width: 22vw;
   display: flex;
   flex-direction: column;
-  height: 40vh;
+  height: 42vh;
   align-items: center;
   position: relative;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  overflow: hidden;
 
   &:hover {
     .image {
@@ -22,14 +30,15 @@ export const CollectionItemContainer = styled.div`
   }
 
   @media screen and (max-width: 800px) {
-    width: 40vw;
+    width: 42vw;
+    padding: 10px 5px;
   }
 `;
 export const AddToCartButton = styled(CustomButton)`
   width: 80%;
   opacity: 0.7;
   position: absolute;
-  bottom: 40px;
+  bottom: 50px;
   &.custom-button {
     transform-origin: top;
     transform: scaleY(0);
@@ -49,6 +58,7 @@ export const BackgroundImage = styled.div`
   margin-bottom: 5px;
   transition: all 0.2s linear;
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
+  border-radius: 10px;
 `;
 
 export const CollectionFooterContainer = styled.div`

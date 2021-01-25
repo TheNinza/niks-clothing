@@ -117,7 +117,7 @@ const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
       }}
     >
       <CheckoutHeaderContainer>
-        <HeaderBlockContainer>
+        <HeaderBlockContainer style={{ marginLeft: "25px" }}>
           <span>Product</span>
         </HeaderBlockContainer>
         <HeaderBlockContainer>
@@ -129,7 +129,7 @@ const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
         <HeaderBlockContainer>
           <span>Price</span>
         </HeaderBlockContainer>
-        <HeaderBlockContainer>
+        <HeaderBlockContainer style={{ marginRight: "25px" }}>
           <span>Remove</span>
         </HeaderBlockContainer>
       </CheckoutHeaderContainer>
@@ -139,7 +139,13 @@ const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
           variants={checkoutContainerVariant}
           initial="hidden"
           animate="show"
-          style={{ width: "100%" }}
+          style={{
+            width: "100%",
+            overflow: "scroll",
+            height: "67vh",
+            padding: "0px 10px",
+            boxShadow: "inset 0 8px 32px 0 rgba(31, 38, 135, 0.37)",
+          }}
         >
           {cartItems.map((cartItem) => (
             <CheckoutItem key={cartItem.id} cartItem={cartItem} />

@@ -12,6 +12,8 @@ export const MenuItemContainer = styled(motion.div)`
   margin: 0 7.5px 15px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 0 12px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 20px;
 
   &:hover {
     cursor: pointer;
