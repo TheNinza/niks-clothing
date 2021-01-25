@@ -7,11 +7,13 @@ import { GlobalStyle } from "./global.styles";
 import Header from "./components/header/header.component";
 import Spinner from "./components/spinner/spinner.component";
 import ErrorBoundry from "./components/error-boundry/error-boundry.component";
+import Particles from "react-particles-js";
+
+import config from "./assets/particlesjs-config.json";
 
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSession } from "./redux/user/user.actions";
-import { AnimatePresence } from "framer-motion";
 
 const HomePage = lazy(() => import("./pages/homepage/homepage.component"));
 const ShopPage = lazy(() => import("./pages/shop/shop.component"));
@@ -51,6 +53,7 @@ const App = ({ currentUser, checkUserSession }) => {
           </Suspense>
         </Switch>
       </ErrorBoundry>
+      <Particles params={config} className="particles" />
     </div>
   );
 };
