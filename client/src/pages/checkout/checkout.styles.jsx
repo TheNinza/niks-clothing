@@ -10,6 +10,7 @@ export const CheckoutPageContainer = styled(motion.div)`
   @media screen and (max-width: 800px) {
     width: 100%;
     padding: 10px;
+    margin: 10px;
   }
 `;
 
@@ -40,6 +41,17 @@ export const TotalContainer = styled.div`
 
   @media screen and (max-width: 800px) {
     font-size: 28px;
+  }
+`;
+
+export const CheckoutItemsContainer = styled(motion.div)`
+  width: 100%;
+  overflow: scroll;
+  max-height: 67vh;
+  padding: 0px 10px;
+  box-shadow: inset 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  @media screen and (max-width: 800px) {
+    max-height: 55vh;
   }
 `;
 

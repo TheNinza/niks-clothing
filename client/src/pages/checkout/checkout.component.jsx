@@ -1,5 +1,5 @@
 import { loadStripe } from "@stripe/stripe-js";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -15,6 +15,7 @@ import {
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import {
   CheckoutHeaderContainer,
+  CheckoutItemsContainer,
   CheckoutPageContainer,
   HeaderBlockContainer,
   PaymentButton,
@@ -135,14 +136,14 @@ const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
       </CheckoutHeaderContainer>
 
       <AnimatePresence exitBeforeEnter>
-        <motion.div
+        <CheckoutItemsContainer
           variants={checkoutContainerVariant}
           initial="hidden"
           animate="show"
           style={{
             width: "100%",
             overflow: "scroll",
-            height: "67vh",
+            height: "68vh",
             padding: "0px 10px",
             boxShadow: "inset 0 8px 32px 0 rgba(31, 38, 135, 0.37)",
           }}
@@ -150,7 +151,7 @@ const CheckoutPage = ({ cartItems, total, currentUser, clearCart }) => {
           {cartItems.map((cartItem) => (
             <CheckoutItem key={cartItem.id} cartItem={cartItem} />
           ))}
-        </motion.div>
+        </CheckoutItemsContainer>
       </AnimatePresence>
 
       <TotalContainer>

@@ -27,14 +27,16 @@ export const LogoContainer = styled(Link)`
 
   ::after {
     content: "";
-    height: 100%;
-    width: 100%;
+    height: 80px;
+    width: 80px;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    box-shadow: inset 0 0 10px 0 rgba(31, 38, 135, 0.37),
+      0 0 10px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     z-index: -1;
@@ -45,7 +47,12 @@ export const LogoContainer = styled(Link)`
 
     .logo {
       width: 100%;
-      height: 150%;
+      height: 100%;
+    }
+
+    ::after {
+      height: 50px;
+      width: 50px;
     }
   }
 `;

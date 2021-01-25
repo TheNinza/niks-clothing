@@ -8,9 +8,13 @@ export const CartDropdownContainer = styled(motion.div)`
   height: 340px;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  border: 1px solid black;
-  background-color: white;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   top: 65px;
   right: 0px;
   z-index: 5;
@@ -22,7 +26,7 @@ export const CartDropdownContainer = styled(motion.div)`
   }
 `;
 export const CartItemsContainer = styled.div`
-  height: 240px;
+  height: 280px;
   display: flex;
   flex-direction: column;
   overflow: scroll;
@@ -35,5 +39,5 @@ export const EmptyMessageContainer = styled.span`
 
 export const CheckoutButton = styled(CustomButton)`
   margin-top: auto;
-  margin: 3px 0;
+  margin: 10px 0 0 0;
 `;
